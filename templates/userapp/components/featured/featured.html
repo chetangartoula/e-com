@@ -1,0 +1,290 @@
+
+
+ <!-- topsell__area-start -->
+ <section class="topsell__area-2 pt-15">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section__head d-flex justify-content-between mb-10">
+                    <div class="section__title">
+                        <h5 class="st-titile">Top Selling Products</h5>
+                    </div>
+                    <div class="product__nav-tab"> 
+                        <ul class="nav nav-tabs" id="flast-sell-tab" role="tablist">
+
+                            {% for p in Topselling %}
+
+                            <li class="nav-item" role="presentation">
+                               
+                              <button class="nav-link" id="{{p.pro_brnd}}-tab" data-bs-toggle="tab" data-bs-target="#{{p.pro_brnd}}" type="button" role="tab" aria-controls="{{p.pro_brnd}}" aria-selected="false">{{p.pro_brnd|upper}}</button>
+                            </li>
+                            {% endfor %}
+                           
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="tab-content" id="flast-sell-tabContent">
+                   
+                   
+
+                    {% for p in Topselling %}
+                   {% if forloop.counter == 1 %}
+                    <div class="tab-pane fade  active show" id="{{p.pro_brnd}}" role="tabpanel" aria-labelledby="{{p.pro_brnd}}-tab">
+                        <div class="product-bs-slider-2">
+                            <div class="product-slider-2 swiper-container">
+                                <div class="swiper-wrapper">
+
+                                    <div class="product__item swiper-slide">
+                                        <div class="product__thumb fix">
+                                            <div class="product-image w-img">
+                                                <a href="product-details.html">
+                                                    <img src="{{p.main_image.url}}" alt="product">
+                                                </a>
+                                            </div>
+                                            {% if p.discount != 0 %}
+                                            <div class="product__offer">
+                                            <span class="discount">-{{p.discount}}%</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action">
+                                                <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                    <i class="fal fa-eye"></i>
+                                                    <i class="fal fa-eye"></i>
+                                                </a>
+                                                <a href="#" class="icon-box icon-box-1">
+                                                    <i class="fal fa-heart"></i>
+                                                    <i class="fal fa-heart"></i>
+                                                </a>
+                                              
+                                            </div>
+                                        </div>
+                                        <div class="product__content">
+                                            <h6><a href="product-details.html">{{p.pro_name}}</a></h6>
+                                            <div class="rating mb-5">
+                                                <ul>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                </ul>
+                                                <span>({{p.ratings}} review)</span>
+                                            </div>
+                                            <div class="price">
+                                                <span>रु.{{p.price}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="product__add-cart text-center">
+                                            <button onclick=addToCart("{{ p.id }}") type="button" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+                                            Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                  
+                                 
+                                </div>
+                            </div>
+                            <!-- If we need navigation buttons -->
+                            <div class="bs-button bs2-button-prev"><i class="fal fa-chevron-left"></i></div>
+                            <div class="bs-button bs2-button-next"><i class="fal fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="tab-pane fade show" id="{{p.pro_brnd}}" role="tabpanel" aria-labelledby="{{p.pro_brnd}}-tab">
+                        <div class="product-bs-slider-2">
+                            <div class="product-slider-2 swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="product__item swiper-slide">
+                                        <div class="product__thumb fix">
+                                            <div class="product-image w-img">
+                                                <a href="product-details.html">
+                                                    <img src="{{p.main_image.url}}" alt="product">
+                                                </a>
+                                            </div>
+                                            {% if p.discount != 0 %}
+                                            <div class="product__offer">
+                                            <span class="discount">-{{p.discount}}%</span>
+                                            </div>
+                                            {% endif %}
+                                            <div class="product-action">
+                                                <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                    <i class="fal fa-eye"></i>
+                                                    <i class="fal fa-eye"></i>
+                                                </a>
+                                                <a href="#" class="icon-box icon-box-1">
+                                                    <i class="fal fa-heart"></i>
+                                                    <i class="fal fa-heart"></i>
+                                                </a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="product__content">
+                                            <h6><a href="product-details.html">{{p.pro_name}}</a></h6>
+                                            <div class="rating mb-5">
+                                                <ul>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                </ul>
+                                                <span>({{p.rating}} review)</span>
+                                            </div>
+                                            <div class="price">
+                                                <span>रु.{{p.price}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="product__add-cart text-center">
+                                            <button onclick=addToCart("{{ p.id }}") type="button" class="cart-btn product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+                                            Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- If we need navigation buttons -->
+                            <div class="bs-button bs2-button-prev"><i class="fal fa-chevron-left"></i></div>
+                            <div class="bs-button bs2-button-next"><i class="fal fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- topsell__area-end -->
+
+
+
+<!-- featured-start -->
+<section class="featured light-bg pt-55 pb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section__head d-flex justify-content-between mb-30">
+                    <div class="section__title">
+                        <h5 class="st-titile">Top Featured Products</h5>
+                    </div>
+                    <div class="button-wrap">
+                        <a href="{%  url 'shop_page' %}">See All Product <i class="fal fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-lg-12">
+                <div class="single-features-item single-features-item-d b-radius mb-20">
+                    <div class="row  g-0 align-items-center">
+
+                       {% for p in Featured  %}
+                        {% if forloop.first  %}
+                        <div class="col-md-6">
+                            <div class="features-thum">
+                                <div class="features-product-image w-img">
+                                    <a href="{% url 'productdetails' p.slug %}"><img src="{{p.main_image.url}}" alt=""></a>
+                                </div>
+                                {% if p.discount != 0%}
+                                <div class="product__offer">
+                                    <span class="discount">-{{ p.discount }}%</span>
+                                </div>
+                                {% endif %}
+                                <div class="product-action">
+                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId{{p.id}}">
+                                        <i class="fal fa-eye"></i>
+                                        <i class="fal fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="icon-box icon-box-1">
+                                        <i class="fal fa-heart"></i>
+                                        <i class="fal fa-heart"></i>
+                                    </a>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="product__content product__content-d">
+                                <h6><a href="{% url 'productdetails' p.slug %}">{{p.pro_name}}</a></h6>
+                                <div class="rating mb-5">
+                                    <ul class="rating-d">
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    </ul>
+                                    <span>({{p.ratings}} review)</span>
+                                </div>
+                                <div class="price d-price mb-10">
+                                    <span>रु.{{p.price}}</span>
+                                </div>
+                                <div class="features-des mb-25">
+                                    <ul>
+                                        {{p.Pro_desc}}
+                                </div>
+                                <div class="cart-option">
+                                    <button onclick=addToCart("{{ p.id }}") class="cart-btn-2 w-100 mr-10">Add to Cart</button>
+                                    <a href="cart.html" class="transperant-btn"><i class="fal fa-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12">
+               
+                <div class="row">
+                    {% for p in Featured %}
+                    {% if not forloop.first %}
+                    <div class="col-md-6">
+                        <div class="single-features-item b-radius mb-20">
+                            <div class="row  g-0 align-items-center">
+                                <div class="col-6">
+                                    <div class="features-thum">
+                                        <div class="features-product-image w-img">
+                                            <a href="{{p.main_image.url}}"><img src="{{p.main_image.url}}" alt=""></a>
+                                        </div>
+                                        <div class="product__offer">
+                                            <span class="discount">-{{p.discount}}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="product__content product__content-d">
+                                        <h6><a href="{% url 'productdetails' p.slug %}">{{p.pro_name}}</a></h6>
+                                        <div class="rating mb-5">
+                                            <ul>
+                                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            </ul>
+                                            <span>({{p.ratings}}review)</span>
+                                        </div>
+                                        <div class="price d-price">
+                                            <span>रु.{{p.price}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                
+              
+            </div>
+        </div>
+    </div>
+</section>
+<!-- featured-end -->

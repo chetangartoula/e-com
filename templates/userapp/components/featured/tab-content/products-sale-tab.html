@@ -1,0 +1,66 @@
+{% load static %}
+
+<div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
+  
+    <div class="owl-carousel owl-full carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+        data-owl-options='{
+            "nav": true, 
+            "dots": true,
+            "margin": 20,
+            "loop": false,
+            "responsive": {
+                "0": {
+                    "items":2
+                },
+                "600": {
+                    "items":2
+                },
+                "992": {
+                    "items":3
+                },
+                "1200": {
+                    "items":4
+                }
+            }
+        }'>
+        {% for pro in onsale %}
+        <div class="product product-2">
+            <figure class="product-media">
+                <a href="product.html">
+                    <img src="{{pro.main_image.url}}" alt="Product image" class="product-image">
+                </a>
+                <div class="product-action-vertical">
+                    <a href="{% url "wishlist_add" pro.id %}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                </div>
+                
+
+                <div class="product-action product-action-dark">
+                    <a href="{% url 'cart_add' pro.id %}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                    <a href="{% url 'quickview' pro.id %}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                </div><!-- End .product-action -->
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+                <div class="product-cat">
+                    <a href="#">{{pro.pro_catagory}}</a>
+                </div><!-- End .product-cat -->
+                <h3 class="product-title"><a href="product.html">{{pro.pro_name}}</a></h3><!-- End .product-title -->
+                <div class="product-price">
+                    ${{pro.price}}
+                </div><!-- End .product-price -->
+                <div class="ratings-container">
+                    <div class="ratings">
+                        <div class="ratings-val" style="width: 60%;"></div><!-- End .ratings-val -->
+                    </div><!-- End .ratings -->
+                    <span class="ratings-text">( 2 Reviews ) </span>
+                </div><!-- End .rating-container -->
+            </div><!-- End .product-body -->
+        </div><!-- End .product -->
+        {% endfor %}
+
+       
+    </div><!-- End .owl-carousel -->
+
+
+
+</div><!-- .End .tab-pane -->

@@ -1,0 +1,91 @@
+{% extends './base.html' %}
+{% load static %}
+{% block title %} Ecommerce Category{% endblock title %}
+{% block content %}
+<main class="main">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Products<span>{{slug|capfiरुt}}</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="elements-list.html">Elements</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Products</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="container">
+            <h2 class="title text-center mb-3">{{slug|upper}}</h2><!-- End .title -->
+
+            <div class="row">
+
+                {% for product in products %}
+
+                <div class="col-6 col-md-4 col-lg-4">
+                    <div class="product text-center">
+                        <figure class="product-media">
+                            <span class="product-label label-sale">30% off</span>
+                            <a href="product.html">
+                                <img src="{{product.main_image }}" alt="Product image" class="product-image">
+                            </a>
+
+                            <div class="product-action">
+                                <a href="{% url 'cart_add' product.id %}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                <a href="{% url "quickview" product.id %}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                            </div><!-- End .product-action -->
+                        </figure><!-- End .product-media -->
+
+                        <div class="product-body">
+                            <div class="product-cat">
+                                <a href="#">{{product.pro_catagory}}</a>
+                            </div><!-- End .product-cat -->
+                            <h3 class="product-title"><a href="product.html">{{product.pro_name}}</a></h3><!-- End .product-title -->
+                            <div class="product-price">
+                                <span class="new-price">${{product.price}}</span>
+                                {% comment %} <span class="old-price">$84.00</span> {% endcomment %}
+                            </div><!-- End .product-price -->
+                            <div class="product-size">
+
+                                <a href="#" class="disabled" title="Small">S</a>
+                                {% for size in product.varients.all %}
+                                <a href="#" title="{{size.size}}">{{size.size|capfiरुt}}</a>
+                               {% endfor %}
+                                
+                            </div><!-- End .product-size -->
+                            <div class="ratings-container">
+                                <div class="ratings">
+                                    <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
+                                </div><!-- End .ratings -->
+                                <span class="ratings-text">({{product.rate_product}} Reviews )</span>
+                            </div><!-- End .rating-container -->
+
+                            <div class="product-nav product-nav-thumbs">
+                                {% for images in product.product.all %}
+                                <a href="#" class="active">
+                                    <img src="{{images.proimg.url}}" alt="product desc">
+                                </a>
+                                {% endfor %}
+                                
+                            </div><!-- End .product-nav -->
+                        </div><!-- End .product-body -->
+                    </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-lg-4 -->
+{% endfor %}
+                <!-- End .col-sm-6 col-lg-4 -->
+            </div><!-- End .row -->
+
+    
+</main>
+
+
+
+
+
+
+
+{% endblock content %}

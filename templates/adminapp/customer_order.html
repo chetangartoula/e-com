@@ -1,0 +1,100 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block title %}Order as per Customer {% endblock title %}
+
+{% block content %}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">Blank Page</h3>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Blank Page</li>
+                </ol>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <a href="https://www.wrappixel.com/templates/adminwrap/"
+                    class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down text-white"> Upgrade to
+                    Pro</a>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+          
+                <div class="col-12">
+                    <table  id ="product_table"class="display" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th scope="col">order_date</th>
+                          <th scope="col">order_by</th>
+                          <th scope="col">order_product</th>
+                          <th scope="col">payment</th>
+                          <th scope="col">total_amount </th>
+                          <th scope="col">delivart_status </th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for p in orders %}
+                        <tr>
+                          <td scope="row">{{p.order_date}}</td>
+                          <td><a href="{% url "customerorder" p.order_by.id %}">{{p.order_by}}</a></td>
+                          <td>{{p.order_product}}</td>
+                          <td>{{p.payment}}</td>
+                          <td>{{p.total_amount}}</td>
+                          <td>{{p.delivart_status}}</td>
+                          <td>
+                          <a href={% url "orderupdate" p.id %} type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                          <a href={% url "orderdelete" p.id %} type="button" class="btn btn-danger btn-sm"><i class="fas red fa-trash"></i></a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+     
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+  
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+{% endblock content %}
+
+
+

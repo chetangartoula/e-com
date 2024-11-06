@@ -1,0 +1,339 @@
+{% extends './base.html' %}
+
+{% load static %}
+{% block title %} Ecommerce Shop Page  {% endblock %}
+{% block content %}
+<style>
+    #slider-container {
+        width:240px;
+        margin-left:10px;
+        background:orange;
+    }
+    .ui-widget-header{
+        background:orage;
+    }
+</style>
+    <!-- shop-area-start -->
+    <div class="shop-area mb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4">
+                    <div class="product-widget mb-30">
+                        <h5 class="pt-title">Product categories</h5>
+                        <div class="widget-category-list mt-20">
+                            
+                                {% for c in  Category %}
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="cat-item-{{c.id}}" data-filter="category"  name="cat-item" value="{{c.id}}" class="filter-checkbox" >
+                                    <label for="cat-item-{{c.id}}">{{c.catagoryname}} <span>({{c.product_set.all.count}})</span></label>
+                                </div>
+                               {% endfor %}
+                            
+                        </div>
+                    </div>
+                    <div class="mb-30">
+                        <h5 class="pt-title">Filter By Price</h5>
+                        <div id="slider-container"></div>
+                        <p>
+                            <label class="pt-title" for="amount">Price range:</label>
+                            <input type="text" id="amount" style="border: 0; color: #f6931f; font-weight: bold;" />
+                        </p>
+                    </div>
+                    <div class="product-widget mb-30">
+                        <h5 class="pt-title">Choose Color</h5>
+                        <div class="product__color mt-20">
+                            <ul>
+                               {% for c in colors %} 
+                               <li>
+                                  <a href="?color={{c.id}}" style="background-color:{{c.color_code}}"></a>
+                               </li>
+                              {% endfor %}
+                            </ul>
+                      </div>
+                    </div>
+                 
+                    <div class="product-widget mb-30">
+                        <h5 class="pt-title">Choose Brand</h5>
+                        <div class="widget-category-list mt-20">
+                            <form action="#">
+
+                                {% for b in brands %}
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="brand-item-{{b.id}}" name="brand-item" data-filter="brands"  value="{{b.id}}" class="filter-checkbox" >
+                                    <label for="brand-item-{{b.id}}">{{b.brantitem}} <span>({{b.brands.count}})</span></label>
+                                </div>
+                            {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                    <div class="product-widget mb-30">
+                        <h5 class="pt-title">Special Offeरु</h5>
+                        <div class="product__sm mt-20">
+                            <ul>
+
+
+                                <li class="product__sm-item d-flex align-items-center">
+                                    <div class="product__sm-thumb mr-20">
+                                        <a href="product-details.html">
+                                            <img src="{% static 'userapp/assets/img/product/sm-1.jpg' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="product__sm-content">
+                                        <h5 class="product__sm-title">
+                                            <a href="product-details.html">{{prod.pro_name}}</a>
+                                        </h5>
+                                        <div class="product__sm-price">
+                                            <span class="price">$300.00</span>
+                                        </div>
+                                    </div>
+                                </li>
+                             
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8">
+                    <div class="shop-banner mb-30">
+                        <div class="banner-image">
+                            <img class="banner-l" src="{% static 'userapp/assets/img/banner/sl-banner.jpg'%}" alt="">
+                            <img class="banner-sm" src="{% static 'userapp/assets/img/banner/sl-banner-sm.png'%}" alt="">
+                            <div class="banner-content text-center">
+                                <p class="banner-text mb-30">Hurry Up! <br> Free Shipping All Order Over $99</p>
+                                <a href="shop.html" class="st-btn-d b-radius">Discover now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-lists-top">
+                        <div class="product__filter-wrap">
+                            <div class="row align-items-center">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                    <div class="product__filter d-sm-flex align-items-center">
+                                        <div class="product__col">
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                  <button class="nav-link active" id="FourCol-tab" data-bs-toggle="tab" data-bs-target="#FourCol" type="button" role="tab" aria-controls="FourCol" aria-selected="true">
+                                                    <i class="fal fa-th"></i>
+                                                  </button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                  <button class="nav-link" id="FiveCol-tab" data-bs-toggle="tab" data-bs-target="#FiveCol" type="button" role="tab" aria-controls="FiveCol" aria-selected="false">
+                                                    <i class="fal fa-list"></i>
+                                                  </button>
+                                                </li>
+                                              </ul>
+                                        </div>
+                                        <div class="product__result pl-60">
+                                            <p>Showing 1-20 of 29 relults</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                    <div class="product__filter-right d-flex align-items-center justify-content-md-end">
+                                        <div class="product__sorting product__show-no">
+                                            <select>
+                                                <option>10</option>
+                                                <option>20</option>
+                                                <option>30</option>
+                                                <option>40</option>
+                                            </select>
+                                        </div>
+                                        <div class="product__sorting product__show-position ml-20">
+                                            <select>
+                                                <option>Latest</option>
+                                                <option>New</option>
+                                                <option>Up comeing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="tab-content" id="productGridTabContent">
+                        <div class="tab-pane fade  show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+                            <div class="tp-wrapper">
+                                <div class="row g-0" id="filteredProducts">
+                                    {% for prod in products %}
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 system" data-price="{{prod.price}}">
+                                        <div class="product__item product__item-d">
+                                            <div class="product__thumb fix">
+                                                <div class="product-image w-img">
+                                                    <a href="product-details.html">
+                                                        <img src="{{prod.main_image.url}}" alt="product">
+                                                    </a>
+                                                </div>
+                                                <div class="product-action">
+                                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId{{prod.id}}">
+                                                        <i class="fal fa-eye"></i>
+                                                        <i class="fal fa-eye"></i>
+                                                    </a>
+                                                    <a href="#" class="icon-box icon-box-1">
+                                                        <i class="fal fa-heart"></i>
+                                                        <i class="fal fa-heart"></i>
+                                                    </a>
+                                                    <a href="#" class="icon-box icon-box-1">
+                                                        <i class="fal fa-layer-group"></i>
+                                                        <i class="fal fa-layer-group"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="product__content-3">
+                                                <h6><a href="{% url 'productdetails' prod.slug %}">{{prod.pro_name|truncatechars:50}}</a></h6>
+                                                <div class="rating mb-5">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    </ul>
+                                                    <span>({{prod.ratings}} review)</span>
+                                                </div>
+                                                <div class="price mb-10">
+                                                    <span>रु. {{prod.price}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="product__add-cart-s text-center">
+                                                <button onclick=addToCart("{{ prod.id }}")  type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                Add to Cart
+                                                </button>
+                                                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId{{prod.id}}">
+                                                    Quick View
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="FiveCol" role="tabpanel" aria-labelledby="FiveCol-tab">
+                            <div class="tp-wrapper-2 ">
+
+                                {% for prod in products %}
+                                <div class="single-item-pd">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-9">
+                                            <div class="single-features-item single-features-item-df b-radius mb-20">
+                                                <div class="row  g-0 align-items-center">
+                                                    <div class="col-md-4">
+                                                        <div class="features-thum">
+                                                            <div class="features-product-image w-img">
+                                                                <a href="{% url 'productdetails' prod.slug %}"><img src="{{prod.main_image.url}}" alt=""></a>
+                                                            </div>
+
+
+                                                            {% if prod.discount is not 0 %}
+                                                            <div class="product__offer">
+                                                                <span class="discount">-{{prod.discount}}%</span>
+                                                            </div>
+                                                            {% endif %}
+                                                            <div class="product-action">
+                                                                <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                                    <i class="fal fa-eye"></i>
+                                                                    <i class="fal fa-eye"></i>
+                                                                </a>
+                                                                <a href="#" class="icon-box icon-box-1">
+                                                                    <i class="fal fa-heart"></i>
+                                                                    <i class="fal fa-heart"></i>
+                                                                </a>
+                                                                <a href="#" class="icon-box icon-box-1">
+                                                                    <i class="fal fa-layer-group"></i>
+                                                                    <i class="fal fa-layer-group"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="product__content product__content-d">
+                                                            <h6><a href="{% url 'productdetails' prod.slug %}">{{prod.pro_name}}</a></h6>
+                                                            <div class="rating mb-5">
+                                                                <ul class="rating-d">
+                                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                                </ul>
+                                                                <span>(01 review)</span>
+                                                            </div>
+                                                            <div class="features-des">
+                                                                <ul>
+                                                                   {{prod.Pro_desc}}
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class="product-stock mb-15">
+                                                <h5>Availability: <span> {{prod.stock}} in stock</span></h5>
+                                                <h6>रु.{{prod.price}} </h6>
+                                            </div>
+                                            <div class="stock-btn ">
+                                                <button type="button" onclick=addToCart("{{ prod.id }}")  class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                Add to Cart
+                                                </button>
+                                                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId{{prod.id}}">
+                                                    Quick View
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tp-pagination text-center">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="basic-pagination pt-30 pb-30">
+                                    <nav>
+                                       <ul>
+                                        {% if products.has_previous %}
+                                        <li>
+                                            <a href="?page={{products.previous_page_number}}">
+                                               <i class="fal fa-angle-double-left"></i>
+                                            </a>
+                                         </li>
+                                         {% endif %}
+                                         {% for i in products.paginator.page_range %}
+                                         {% if products.number == i %}
+                                          <li>
+                                             <a href="?page={{ i }}" class="active">{{i}}</a>
+                                          </li>
+                                          {% endif %}
+                                          <li>
+                                            <a href="?page={{ i }}">{{i}}</a>
+                                         </li>
+                                          {% endfor %}
+
+                                          <li class="page-item-total">{{ products.number }} of {{ products.paginator.num_pages }}</li>
+                                          {% if products.has_next %}
+                                          <li>
+                                             <a href="?page={{ products.next_page_number }}">
+                                                <i class="fal fa-angle-double-right"></i>
+                                             </a>
+                                          </li>
+                                          {% endif %}
+                                       </ul>
+                                     </nav>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- shop-area-end -->
+
+
+{% endblock content %}
+
+
+

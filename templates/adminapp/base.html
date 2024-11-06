@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/adminwrap-lite/" />
+    <!-- Favicon icon -->
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'adminapp/assets/images/favicon.png'%}">
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'adminapp/assets/node_modules/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'adminapp/assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="{% static 'adminapp/assets/node_modules/morrisjs/morris.css' %}" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="{% static 'adminapp/assets/node_modules/c3-master/c3.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'adminapp/css/style.css' %}" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="{% static 'adminapp/css/pages/dashboard1.css' %}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{% static 'adminapp/css/colors/default.css' %}" id="theme" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"  />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    {{ form.media }}
+
+</head>
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Admin Wrap</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="{% static 'assets/images/logo-icon.png' %}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="{% static 'assets/images/logo-light-icon.png' %}" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                            <!-- dark Logo text -->
+                            <img src="{% static 'assets/images/logo-text.png'%}" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="{% static 'assets/images/logo-light-text.png'%}" class="light-logo" alt="homepage" /></span>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="fa fa-bars"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item hidden-xs-down search-box"> <a
+                                class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
+                                    class="fa fa-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter"> <a
+                                    class="srh-btn"><i class="fa fa-times"></i></a></form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#"
+                                id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="{% static 'assets/images/users/1.jpg' %}" alt="user" class="" /> <span
+                                    class="hidden-md-down">{{request.user}} &nbsp;</span> </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        {% if request.user.is_superuser == True %}
+
+                        <li> <a class="waves-effect waves-dark" href="{% url 'index'%}" aria-expanded="false"><i
+                                    class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'sales'%}" aria-expanded="false"><i
+                                    class="fa fa-user-circle-o"></i><span class="hide-menu">Sales</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'purchase'%}" aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu">Purchase</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'expence'%}" aria-expanded="false"><i
+                                    class="fa fa-smile-o"></i><span class="hide-menu">Expences</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'payment'%}" aria-expanded="false"><i
+                                    class="fa fa-globe"></i><span class="hide-menu">Payment</span></a>
+                        </li>
+
+                        <li> <a class="waves-effect waves-dark" href="{% url 'product'%}" aria-expanded="false"><i
+                            class="fa fa-question-circle"></i><span class="hide-menu">Product</span></a>
+                        </li>
+
+                        <li> <a class="waves-effect waves-dark" href="{% url 'order'%}" aria-expanded="false"><i
+                            class="fa fa-globe"></i><span class="hide-menu">Order</span></a>
+                </li>
+
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false"><i
+                                    class="fa fa-bookmark-o"></i><span class="hide-menu">Account</span><i
+                                    style="float:right" class="fa fa-angle-down"  id="dd-icon"></i></a>
+                                    <ul id="sidebarnav">
+                                        <li> <a class="waves-effect waves-dark" href="{% url 'daybook'%}" aria-expanded="false"><i
+                                                    class="fa fa-tachometer"></i><span class="hide-menu">&nbsp; Day Book</span></a>
+                                        </li>
+                                        <li> <a class="waves-effect waves-dark" href="{% url 'ledger'%}" aria-expanded="false"><i
+                                                    class="fa fa-user-circle-o"></i><span class="hide-menu">&nbsp; Ledger</span></a>
+                                        </li>
+                                        <li> <a class="waves-effect waves-dark" href="{% url 'finalaccount'%}" aria-expanded="false"><i
+                                            class="fa fa-user-circle-o"></i><span class="hide-menu">&nbsp; Final Account</span></a>
+                                        </li>
+                                    </ul>
+                         </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'customer'%}" aria-expanded="false"><i
+                                    class="fa fa-question-circle"></i><span class="hide-menu">Customer</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'supplier'%}" aria-expanded="false"><i
+                            class="fa fa-question-circle"></i><span class="hide-menu">Supplier</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'setting'%}" aria-expanded="false"><i
+                            class="fa fa-question-circle"></i><span class="hide-menu">Settings</span></a>
+                           
+                        </li>
+                        {% elif  request.user.is_vendor == True %}
+                        <li> <a class="waves-effect waves-dark" href="{% url 'sales'%}" aria-expanded="false"><i
+                            class="fa fa-user-circle-o"></i><span class="hide-menu">Sales</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{% url 'product'%}" aria-expanded="false"><i
+                            class="fa fa-question-circle"></i><span class="hide-menu">Product</span></a>
+                        </li>
+
+
+                        <li> <a class="waves-effect waves-dark" href="{% url 'order'%}" aria-expanded="false"><i
+                            class="fa fa-globe"></i><span class="hide-menu">Order</span></a>
+                        </li>
+                        
+
+                        {% endif %}
+
+                    </ul>
+                   
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{%  static 'adminapp/assets/node_modules/jquery/jquery.min.js'%}"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="{%  static 'adminapp/assets/node_modules/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{%  static 'adminapp/js/perfect-scrollbar.jquery.min.js'%}"></script>
+    <!--Wave Effects -->
+    <script src="{%  static 'adminapp/js/waves.js'%}"></script>
+    <!--Menu sidebar -->
+    <script src="{%  static 'adminapp/js/sidebarmenu.js'%}"></script>
+    <!--Custom JavaScript -->
+    <script src="{%  static 'adminapp/js/custom.min.js'%}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!--morris JavaScript -->
+    <script src="{%  static 'adminapp/assets/node_modules/raphael/raphael-min.js'%}"></script>
+    <script src="{%  static 'adminapp/assets/node_modules/morrisjs/morris.min.js'%}"></script>
+    <!--c3 JavaScript -->
+    <script src="{%  static 'adminapp/assets/node_modules/d3/d3.min.js'%}"></script>
+    <script src="{%  static 'adminapp/assets/node_modules/c3-master/c3.min.js'%}"></script>
+    <!-- Chart JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+    <script src="{%  static 'adminapp/js/dashboard1.js'%}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#product_table').DataTable({
+                order: [[3, 'desc']],
+            });
+        });
+        var multipleCancelButton = new Choices('.choices-multiple-remove-button', {
+            removeItemButton: true,
+            maxItemCount:5,
+            searchResultLimit:5,
+            renderChoiceLimit:5
+          }); 
+         
+    </script>
+</body>
+
+</html>

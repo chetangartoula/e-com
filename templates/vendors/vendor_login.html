@@ -1,0 +1,19 @@
+
+<form action = "" method = "POST" >
+    {% csrf_token %}
+{% for fm in form %}
+
+{{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br>
+
+
+{% endfor %}
+<button type="submit">Log in as  vendor</button>
+</form>
+
+
+{% if messages %}
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+
+{% endif %}

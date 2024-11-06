@@ -1,0 +1,81 @@
+<div class="header__bottom">
+    <div class="container">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-3">                        
+                <div class="cat__menu-wrapper side-border d-none d-lg-block">
+                    <div class="cat-toggle">
+                        <button type="button" class="cat-toggle-btn cat-toggle-btn-1"><i class="fal fa-bars"></i> Shop by department</button>
+                        <div class="cat__menu">
+                            <nav id="mobile-menu" style="display: block;">
+                                <ul>
+                                    {% for cats in Category_list %}
+                                    <li>
+                                        <a href="{% url 'shop_page' %}?main_category={{cats.name}}">{{cats.name}} <i class="far fa-angle-down"></i></a>
+                                        <ul class="mega-menu">
+                                           
+                                            {% for mega in cats.sub_category.all %}
+
+                                            <li><a href="{% url 'shop_page' %}?sub_category={{mega.name|slugify}}">{{mega.name}}</a>
+                                                <ul class="mega-item">
+                                                    {% for  cat in mega.category.all %}
+                                                  
+                                                    
+                                                    <li><a href=" {% url 'shop_page' %}?category={{cat.catagoryname|slugify}}">{{cat.catagoryname}}</a></li>
+                                                    
+                                                    {% endfor %}
+                                                
+                                                </ul>
+                                            </li>
+
+                                            
+
+                                            {% endfor %}
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-3">
+              <div class="header__bottom-left d-flex d-xl-block align-items-center">
+                <div class="side-menu d-lg-none mr-20">
+                  <button type="button" class="side-menu-btn offcanvas-toggle-btn"><i class="fas fa-bars"></i></button>
+                </div>
+                <div class="main-menu d-none d-lg-block">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="{% url "index" %}" class="active">Home </a>
+                             
+                            </li>
+                            <li ><a href="{% url 'shop_page' %}">Shop </a>
+                              
+                            </li>
+                            <li><a href="{% url "wats_on_sale"%}">Whats on sale</a></li>
+                            
+                            <li><a href="{% url 'how_to_order' %}">How To Order</a>
+                              
+                            </li>
+                            <li>
+                                <a href="{% url 'faqs' %}">faq's </a>
+                           
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-9">
+                <div class="shopeing-text text-sm-end">
+                    <p>Spend $120 more and get free shipping!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
