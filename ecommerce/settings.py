@@ -227,9 +227,6 @@ SOCIALACCOUNT_PROVIDERS = {
     
 }
 
-# 421802521811-uskarqnl9jqp8k88o97gliva9fbqolni.apps.googleusercontent.com      clientid
-# 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                                           client_secret
-
 
 AUTH_USER_MODEL = 'adminapp.User'
 ACCOUNT_ADAPTER = 'vendors.adapter.MyAccountAdapter'
