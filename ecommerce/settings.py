@@ -227,6 +227,5 @@ SOCIALACCOUNT_PROVIDERS = {
     
 }
 
-
 AUTH_USER_MODEL = 'adminapp.User'
 ACCOUNT_ADAPTER = 'vendors.adapter.MyAccountAdapter'
